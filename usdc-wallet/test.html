@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+      type="application/javascript"
+    ></script>
+    <script>
+      const provider = new ethers.providers.Web3Provider(
+        window.ethereum,
+        "any"
+      );
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
+
+      (async function () {
+        let userAddress = await signer.getAddress();
+        document.getElementById("wallet").innerText =
+          "Your wallet is " + userAddress;
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="wallet"></div>
+  </body>
+</html>
